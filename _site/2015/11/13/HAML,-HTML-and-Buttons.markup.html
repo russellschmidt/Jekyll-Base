@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>HAML, HTML and Buttons</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <meta name="author" content="" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    
+    <link src="/_styles/normalize.css" type="text/css" rel="stylesheet" >
+    <link src="/_styles/main.css" type="text/css" rel="stylesheet" >
+    
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  <!-- end of Favicon -->
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">HAML, HTML and Buttons</a></h1>
+    </header>
+    <section>
+      <div class="content">
+  <div id="post">
+    <h1></h1>
+    <h2>HAML, HTML and Buttons</h2>
+
+<h3>TL;DR <a href="http://html2haml.herokuapp.com">this</a> is all you need</h3>
+
+<p>I am in the middle of my bloc.io full stack apprenticeship and decided, with my mentor's blessing and encouragement, to kick things up a notch and try using HAML for all my projects. I am familiar already with ERB and wanted to, well, be lazy and stop closing my Ruby tags.</p>
+
+<p>All was alright in the world, and anyone who is starting out in Rails should at least check out HAML and SLIM to write HTML faster... until the button! The HTML for the button, which was going to pass a status message to the user, is <code>html
+&lt;button type= "button" data-dismiss="alert" class="close"&gt;&amp;times;&lt;/button&gt;
+</code>
+My first thought was to use the rails helper <code>button_to</code> but that was a solid fail.  Implemented in HAML, that would look like
+<code>
+= button_to 'Label', some_path
+</code>
+That helper really is not great as a button that dismisses an alert. It expects a URI of some sort, whether in the form of "http:xyz.com" or some_path, which we do not offer in our button. The <code>&lt;button&gt;</code> tag actually does not support href links at this time so this is not a great option for us per <a href="https://css-tricks.com/use-button-element/">CSS-Tricks</a>.</p>
+
+<p>Poking around the internet, I came across that great <a href="http://html2haml.herokuapp.com">HTML2HAML</a> resource.</p>
+
+<p>This ended up being the magic solution:
+<code>ruby
+%button.close{"data-dismiss": "alert", type: "button"} &amp;times;
+</code>
+I had been close but no cigar because of the "data-dismiss" attribute coming from Bootstrap needing to be enclosed in quotes. This is sort of an odd scenario as the button is designed to dismiss a flash message. More normally, you would write a button using HTML attributes that would look like this:
+<code>
+%button.btn.btn-default{type: "submit", name: "submission" } Click 4 Submission
+</code></p>
+
+  </div>
+</div>
+
+    </section>
+    
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/_scripts/main.js"></script>
+  </body>
+</html>

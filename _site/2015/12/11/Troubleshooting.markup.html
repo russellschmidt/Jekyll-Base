@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>Troubleshooting with Rails!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <meta name="author" content="" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    
+    <link src="/_styles/normalize.css" type="text/css" rel="stylesheet" >
+    <link src="/_styles/main.css" type="text/css" rel="stylesheet" >
+    
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  <!-- end of Favicon -->
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Troubleshooting with Rails!</a></h1>
+    </header>
+    <section>
+      <div class="content">
+  <div id="post">
+    <h1></h1>
+    <h2>Troubleshooting with Rails.logger.info</h2>
+
+<p>This short post will be discussing the magic of the Rails error logging. I literally learned about it today and literally have zero blog readers so I don't feel too bad with the misinformation campaign below.</p>
+
+<p>Assume you have an error you don't understand. An error that doesn't even necessarily cause your view to show an error message. Maybe you are spitting out JSON which is not quite as verbose about things not working as, say, an error that would mess up an HTML-based view. You need some help. You need to know what is in those variables. You need Rails logger!</p>
+
+<h3>Rails.logger.info</h3>
+
+<p>Putting in Rails.logger.info <em>some_var</em> into your Ruby code will output that <em>some_var</em> to your test log (see next section). You can output strings enclosed in quotes, variables as variables, variables using string interpolation for more readable error logging, or dive into variables with <em>some_var.inspect</em>.</p>
+
+<p>So for example, you can write Rails.logger.info @current_user.inspect to see the status of a currently logged in user while running, say, RSpec or playing with a live app on your local machine.</p>
+
+<h3>iTerm Use Case</h3>
+
+<p>In iTerm (or Terminal, or other command line du jure) you can type in</p>
+
+<blockquote><blockquote><blockquote><p>$ tail -f log/test.log</p>
+
+<p>and now view an activity log including your Rails.logger.info entries to pick apart what is going on in your code.</p></blockquote></blockquote></blockquote>
+
+<h3>Helpful hints</h3>
+
+<p>I can only pass on the three I know, so here goes.
+1. Be sure to delete out your Rails.logger.info code once you are done.
+2. Don't be shy about using lines of text so provide visual ID'ing of your tests. It is hard to find the inserted logger lines so "!!!!!!!!!!!!!" is not a bad idea.
+3. You can only pass one variable per line with Rails.logger.info</p>
+
+  </div>
+</div>
+
+    </section>
+    
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/_scripts/main.js"></script>
+  </body>
+</html>
