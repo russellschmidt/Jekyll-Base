@@ -12,3 +12,13 @@ twitter_username: rustiest
 github_username:  russellschmidt
 linkedin_username: russellschmidt
 facebook_username: RussellMSchmidt
+
+title: "Russell Schmidt"
+
+##### uncomment baseurl, url for development, comment both for production
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://russellschmidt.net" # the base hostname & protocol for your site
+
+##### comment baseurl, url for development, uncomment both for production
+#baseurl: "/russellschmidt.github.io" # the subpath of your site, e.g. /blog/
+#url: "http://russellschmidt.net" # the base hostname & protocol for your site
